@@ -237,7 +237,7 @@ loadRTData <- function()
 	# Read data for last 3 quarters
 	print("Getting data for the last 3 quarters...")  
 
-	rtData<-try(as.data.frame(read.table("http://feed.opendata.imet.gr:23577/fcd/speed_hourly.csv?offset=0&limit=-1", header = TRUE, sep = ";"),silent = TRUE))
+	rtData<-try(as.data.frame(read.table("http://160.40.63.115:23577/fcd/speed_hourly.csv?offset=0&limit=-1", header = TRUE, sep = ";"),silent = TRUE))
 
 	if (is.null(rtData) || class(rtData) == "try-warning" || class(rtData) == "try-error") {
 		print("Could not get data for the past 3 quarters. Cannot continue.")  
