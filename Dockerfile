@@ -19,5 +19,5 @@ RUN apt-get update \
     && apt-get install -y r-base r-base-dev \
     && apt-get install -y libpq-dev
 
-# Copy the R scripts for the map matching 
+# Copy the R scripts for the prediction algorithm 
 ADD NNLink.R .
