@@ -1,0 +1,5 @@
+# This file contains the list of files and folder that don't have to be shown in git status after additions or commits 
+
+# ignore the models folder build by the NNLink.R script
+models/*
+
