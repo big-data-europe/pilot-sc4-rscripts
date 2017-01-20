@@ -283,9 +283,9 @@ getPredictionFromModel <- function(link_id,link_direction, rtData) {
 	# Load model for current link
 	print("Loading model...")  
 
-	NNOut <- try(readRDS(file.path(wd, "Models",paste("NNOut",paste(paste(paste(link_id,link_direction,sep="_"), ".rds",sep="")),sep="_"))),silent = TRUE)
-	maxs <- try(readRDS(file.path(wd, "Models",paste("maxs",paste(paste(paste(link_id,link_direction,sep="_"), ".rds",sep="")),sep="_"))),silent = TRUE)
-	mins <- try(readRDS(file.path(wd, "Models",paste("mins",paste(paste(paste(link_id,link_direction,sep="_"), ".rds",sep="")),sep="_"))),silent = TRUE)
+	NNOut <- try(readRDS(file.path(wd, "models",paste("NNOut",paste(paste(paste(link_id,link_direction,sep="_"), ".rds",sep="")),sep="_"))),silent = TRUE)
+	maxs <- try(readRDS(file.path(wd, "models",paste("maxs",paste(paste(paste(link_id,link_direction,sep="_"), ".rds",sep="")),sep="_"))),silent = TRUE)
+	mins <- try(readRDS(file.path(wd, "models",paste("mins",paste(paste(paste(link_id,link_direction,sep="_"), ".rds",sep="")),sep="_"))),silent = TRUE)
 
 	if (is.null(NNOut) || class(NNOut) == "try-warning" || class(NNOut) == "try-error" || 
 	  is.null(maxs) || class(maxs) == "try-warning" || class(maxs) == "try-error" ||
