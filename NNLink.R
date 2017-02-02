@@ -26,7 +26,7 @@ loadTrainData <-function(link_id,link_direction){
 	# oneLinkmydata<-read.table(file.path(wd, "TrainingData",paste(paste(link_id,link_direction,sep="_"), ".csv",sep="")), header= FALSE, sep = ",")
 	
 	# Read historical data directly from zip file (TEMPORAL SOLUTION)
-	oneLinkData<-try(as.data.frame(read.csv(unz(file.path(wd, "TEMP_TrainingData",paste(paste(link_id,link_direction,sep="_"), ".zip",sep="")),paste(paste(link_id,link_direction,sep="_"), ".csv",sep="")), header= FALSE, sep = ",")),silent=FALSE)
+	oneLinkData<-try(as.data.frame(read.csv(unz(file.path(wd, "test",paste(paste(link_id,link_direction,sep="_"), ".zip",sep="")),paste(paste(link_id,link_direction,sep="_"), ".csv",sep="")), header= FALSE, sep = ",")),silent=FALSE)
 
 	if (is.null(oneLinkData) || class(oneLinkData) == "try-warning" || class(oneLinkData) == "try-error") {
   
@@ -332,7 +332,7 @@ loadRTDataFromFile <- function(){
   # Read data for last 3 quarters
   print("Getting data for the last 3 quarters...")  
   
-  rtData<-try(as.data.frame(read.table("TEMP_RTData/speed_hourly_sample.csv", header = TRUE, sep = ";"),silent = TRUE))
+  rtData<-try(as.data.frame(read.table("test/speed_hourly_sample.csv", header = TRUE, sep = ";"),silent = TRUE))
   
   if (is.null(rtData) || class(rtData) == "try-warning" || class(rtData) == "try-error") {
     print("Could not get data for the past 3 quarters. Cannot continue.")  
@@ -426,21 +426,3 @@ getPredictionFromModel <- function(link_id,link_direction, rtData) {
 	# Getting data that make sense (apply de-normalization)
 	return(round(result)) 
 }
-
-# #load packages
-# loadPackages()
-# #load train-test data
-# trainTestData <- loadTrainData(200512125,1)
-# #prepare train-test data and save min-max
-# preparedTrainTestData <- prepareTrainAndTestData(200512125,1,trainTestData)
-# #train model
-# trainModel(200512125,1,preparedTrainTestData)
-# #test model
-# testResults = testModel(200512125,1,preparedTrainTestData)
-# testResults[1] #compare calculated vs real values (speeds and entries)
-# testResults[2] #mse (speeds)
-# testResults[3] #mse (entries)
-# #load rt data
-# rtData <- loadRTData()
-# #get prediction from model
-# getPredictionFromModel(200512125,1,rtData)
