@@ -14,7 +14,7 @@ NNOut <- try(neuralnet(avgSpeed_Current + entries_Current ~ avgSpeed_45 + avgSpe
 
 The hidden layers have been chosen based on iterative examination of various combinations. The most promising combination of hidden layers and number of neurons has been identified to be 2 layers, one with 6 neurons and the other with 3 neurons. Unfortunately, there are times when the training of the model cannot be completed by applying these parameter values. In that case, we need to lower the numbers of neurons (down to 1) and try again. Currently we define 2 layers, the first with 2 neurons and the other with 1. The script is applied for data from only one link and for a specific period of time. The output is the Neural Network definition, that can be applied in new data of the same format.
 
-##Documentation 
+## Documentation 
 
 Overall the script contains the following functions:
 
@@ -41,14 +41,14 @@ Overall the script contains the following functions:
  In case you don’t have access to the feed’s URL, you can use the sample file in the test folder for demonstration purposes.
 
 
-##Requirements 
+## Requirements 
 After cloning the project create a folder "models" before running the script.
 
-##Build 
+## Build 
 
-##Install and Run 
+## Install and Run 
 
-##Usage 
+## Usage 
 Load required R packages:
 ```sh
 loadPackages()
@@ -88,5 +88,5 @@ Get predictions from model
 getPredictionFromModel(200512125,1,rtData)
 ```
 
-##License 
+## License 
  
