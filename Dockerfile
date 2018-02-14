@@ -17,10 +17,15 @@ RUN apt-get update && \
 # Install R
 RUN apt-get update \
     && apt-get install -y r-base r-base-dev \
-    && apt-get install -y libpq-dev libssl-dev
+    && apt-get install -y libpq-dev libssl-dev \
+    && apt-get install -y libcurl4-openssl-dev
 
 # Copy the R scripts for the prediction algorithm 
-ADD NNLink.R .
+ADD R/ R/
+ADD GetPredictions.R .
+
+# Copy a a script to test the algorithm
+ADD test_forecast.R .
 
 # Create the folder for the models
 RUN mkdir models
@@ -29,8 +34,16 @@ RUN mkdir models
 ADD start_rserve.sh .
 ADD Rserve.conf .
 ADD rserve/ rserve/
+
+# Add devtools 
+ADD devtools/ devtools/
+
 # Install the Rserve package for R
 RUN ["R", "CMD", "INSTALL", "rserve/Rserve_1.8-5.tar.gz"]
 #RUN Rscript -e "install.packages('Rserve')"
+
+# Install devtools package
+RUN ["R","CMD","INSTALL","devtools/devtools_1.13.4.tar.gz"]
+
 # Start Rserve
 CMD ["sh","start_rserve.sh"]
