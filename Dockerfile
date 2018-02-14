@@ -22,6 +22,9 @@ RUN apt-get update \
 # Copy the R scripts for the prediction algorithm 
 ADD NNLink.R .
 
+# Create the folder for the models
+RUN mkdir models
+
 # Add Rserve for the communication Java - R
 ADD start_rserve.sh .
 ADD Rserve.conf .
