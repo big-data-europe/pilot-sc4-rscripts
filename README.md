@@ -4,9 +4,7 @@ This project provides a Docker images with a R environment and R scripts that im
 algorithm (v2.0) for pilot SC4.  
 
 ## Description
-Please see:
-https://github.com/ptzenos/TrafficBDE
-https://github.com/ptzenos/TrafficBDEWrapper
+
 
 ## Documentation 
 
@@ -29,12 +27,6 @@ The R module (which is installed as a package) takes this dataset as input, it t
 The GetPrediction function (in the GetPredictions.R file) acts as a wrapper by calculating predictions for many links at once and for the next 4 quarters.
 
 ## Build 
-A docker image can be built with the command:
-
-    $ docker build -t ptzenos/pilot-sc4-rscripts:v2.0 .     
-
-## Install and Run 
-A container can be started with the command:
 
     $ docker run --name forecasts -p 6311:6311 -d ptzenos/pilot-sc4-rscripts:v2.0
 
