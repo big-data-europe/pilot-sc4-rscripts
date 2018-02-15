@@ -1,18 +1,26 @@
-Pilot SC4 R Scripts
-===================
+Pilot SC4 Forecasting
+=====================
 This project provides a Docker images with a R environment and R scripts that implement the prediction
 algorithm for pilot SC4.  
 
 ## Description
-A framework for traffic prediction based on historical data has been defined. The implementation is conducted on a link (aka road) level. The historical data is properly transformed and cleaned for the back propagating Neural Network algorithm to be applied for the model estimation based on the last 3 time steps (quarters). The historical data is first normalized based on the min-max normalization.
+A framework for traffic prediction based on historical data has been defined. The implementation is conducted 
+on a link (aka road) level. The historical data is properly transformed and cleaned for the back propagating 
+Neural Network algorithm to be applied for the model estimation based on the last 3 time steps (quarters). The 
+historical data is first normalized based on the min-max normalization. Based on the normalized data and using 
+the neuralnet package in R, the training of the model is performed by taking into account the average speed and 
+the number of entries observed in the 3 previous steps:
 
-Based on the normalized data and using the neuralnet package in R, the training of the model is performed by taking into account the average speed and the number of entries observed in the 3 previous steps:
+    #> NNOut <- try(neuralnet(avgSpeed_Current + entries_Current ~ avgSpeed_45 + avgSpeed_30 + avgSpeed_15 + entries_45 + entries_30 + entries_15, trainset, hidden=c(2,1),lifesign = "minimal", linear.output = TRUE, threshold=0.01, stepmax = 1000000), silent=FALSE)
 
-```sh
-NNOut <- try(neuralnet(avgSpeed_Current + entries_Current ~ avgSpeed_45 + avgSpeed_30 + avgSpeed_15 + entries_45 + entries_30 + entries_15, trainset, hidden=c(2,1),lifesign = "minimal", linear.output = TRUE, threshold=0.01, stepmax = 1000000), silent=FALSE)
-```
 
-The hidden layers have been chosen based on iterative examination of various combinations. The most promising combination of hidden layers and number of neurons has been identified to be 2 layers, one with 6 neurons and the other with 3 neurons. Unfortunately, there are times when the training of the model cannot be completed by applying these parameter values. In that case, we need to lower the numbers of neurons (down to 1) and try again. Currently we define 2 layers, the first with 2 neurons and the other with 1. The script is applied for data from only one link and for a specific period of time. The output is the Neural Network definition, that can be applied in new data of the same format.
+The hidden layers have been chosen based on iterative examination of various combinations. The most promising 
+combination of hidden layers and number of neurons has been identified to be 2 layers, one with 6 neurons and the
+ other with 3 neurons. Unfortunately, there are times when the training of the model cannot be completed by applying 
+these parameter values. In that case, we need to lower the numbers of neurons (down to 1) and try again. Currently 
+we define 2 layers, the first with 2 neurons and the other with 1. The script is applied for data from only one 
+link and for a specific period of time. The output is the Neural Network definition, that can be applied in new 
+data of the same format.
 
 ## Documentation 
 
@@ -45,8 +53,14 @@ Overall the script contains the following functions:
 After cloning the project create a folder "models" before running the script.
 
 ## Build 
+A docker image can be built with the command
+
+    $ docker build -t bde2020/pilot-sc4-rscripts:v0.1.0 .    
 
 ## Install and Run 
+A container can be started with the command
+
+    $ docker run --name forecasts -p 6311:6311 -d bde2020/pilot-sc4-rscripts:v0.1.0
 
 ## Usage 
 Load required R packages:
