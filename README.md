@@ -37,7 +37,5 @@ R < GetPredictions.R --no-save
 ```
 A csv file containing the output should then be created in the folder "output".
 
-PS: Please note that the "GetPrediction" function currently requires access to a private url that provides historical datasets.
-
 ## License 
  TBD
