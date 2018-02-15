@@ -6,7 +6,7 @@ GetPredictions <- function(executor_number, total_executors){
   df = data.frame(matrix(vector(), 0, 6, dimnames=list(c(), c("Link_id", "Direction","Exec_Timestamp","Step","Pred_Timestamp","Pred"))),stringsAsFactors=F)				
   #get traindata
   print("Getting OSM links...")
-  OSM_Links <- data.table::fread("data/OSM_Main_Links.csv")
+
   OSM_Links <- as.data.frame(OSM_Links[,])
   print("OK. The number of links is:")
   print(nrow(OSM_Links))
@@ -47,5 +47,4 @@ GetPredictions <- function(executor_number, total_executors){
     }	
     i <- i+1;
   }
-  return(df)
-}
+
